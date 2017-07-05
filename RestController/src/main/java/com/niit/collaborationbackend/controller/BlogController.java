@@ -22,14 +22,14 @@ public class BlogController {
 	@Autowired
 	private BlogDAO blogDAO;
 
-	@GetMapping("/blog")
+	@GetMapping("/blogs")
 	public List<Blog> getBlogs() {
 		List<Blog> blogList = blogDAO.list();
 
 		return blogList;
 	}
 
-	@GetMapping("/blog/{blogId}")
+	@GetMapping("/blogId/{blogId}")
 	public ResponseEntity<Blog> getByBlogId(@PathVariable("blogId") int id) {
 		Blog blog = blogDAO.getByBlogId(id);
 		if (blog == null) {
@@ -38,7 +38,7 @@ public class BlogController {
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	}
 
-	@GetMapping("/blog/{blog_name}")
+	@GetMapping("/blogName/{blog_name}")
 	public ResponseEntity<Blog> getblogByBlogName(@PathVariable("blog_name") String blog_name) {
 		Blog blog = blogDAO.getByBlogName(blog_name);
 		if (blog == null) {
@@ -54,8 +54,8 @@ public class BlogController {
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	}
 
-	@PutMapping("/blog")
-	public ResponseEntity<Blog> update(@RequestBody Blog blog) {
+	@PutMapping("/blog/{blogId}")
+	public ResponseEntity<Blog> update(@PathVariable("blogId") int id,@RequestBody Blog blog) {
 		blogDAO.saveOrUpdate(blog);
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	}
