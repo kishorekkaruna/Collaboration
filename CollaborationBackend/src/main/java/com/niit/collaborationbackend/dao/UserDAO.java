@@ -9,11 +9,11 @@ public interface UserDAO {
 
 	public User get(int userId);
 
-	public User getbyUsername(String email_id);
+	public List<User> getbyUsername(String email_id);
 
 	public User create(User user);
 
-	public void delete(int userId);
+	public User delete(int userId);
 
 	public User update(User user);
 }

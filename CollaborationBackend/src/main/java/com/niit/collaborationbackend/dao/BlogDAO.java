@@ -9,6 +9,8 @@ public interface BlogDAO {
 	public List<Blog> list();
 
 	public Blog getByBlogId(int blogId);
+	
+	public Blog getByBlogName(String blog_name);
 
 	public List<Blog> getAcceptedBlog();
 
@@ -20,7 +22,7 @@ public interface BlogDAO {
 
 	public void save(Blog blog);
 
-	public void delete(int blogId);
+	public Blog delete(int blogId);
 
 	public void saveOrUpdate(Blog blog);
 }

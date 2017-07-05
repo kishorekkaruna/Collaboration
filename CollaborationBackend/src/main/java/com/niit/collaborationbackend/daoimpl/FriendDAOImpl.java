@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,9 +23,10 @@ public class FriendDAOImpl implements FriendDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Friend> list() {
-
-		return null;
+		List<Friend> friendList = sessionFactory.getCurrentSession().createQuery("from Friend").list();
+		return friendList;
 	}
 
 	public List<Friend> list(int friendId) {
@@ -37,8 +39,14 @@ public class FriendDAOImpl implements FriendDAO {
 
 	}
 
-	public Friend getByFriendId(int id) {
-
+	public Friend getByFriendId(int friendId) {
+		String oracle="from Friend where friendId="+"'"+friendId+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(oracle);
+		@SuppressWarnings("unchecked")
+		List<Friend> friendlist = (List<Friend>) query.list();
+		if (friendlist != null && !friendlist.isEmpty()) {
+			return friendlist.get(0);
+		}
 		return null;
 	}
 
@@ -52,8 +60,10 @@ public class FriendDAOImpl implements FriendDAO {
 		return null;
 	}
 
-	public void delete(int id) {
-
+	public void delete(int friendId) {
+		Friend friendtoDelete = new Friend();
+		friendtoDelete.setFriendId(friendId);
+		sessionFactory.getCurrentSession().delete(friendtoDelete);
 	}
 
 	public void saveOrUpdate(Friend friend) {

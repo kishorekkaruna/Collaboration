@@ -42,7 +42,7 @@ public class UserTestcase {
 		Friend friend = (Friend) context.getBean("friend");
 
 		/* User Table */
-		/*user.setFirst_name("Kishore");
+		user.setFirst_name("Kishore");
 		user.setLast_name("Karuna");
 		user.setPassword("kishore");
 		user.setEmail_id("kishorekaruna@gmail.com");
@@ -51,10 +51,10 @@ public class UserTestcase {
 		user.setStatus("V");
 		user.setIs_online("is_online");
 
-		userDAO.create(user);*/
+		userDAO.create(user);
 
 		/* BlogDATA */
-		/*blog.setBlog_name("");
+		blog.setBlog_name("");
 		blog.setUser_id(1);
 		blog.setEmail_Id("");
 		blog.setUser_name("");
@@ -62,34 +62,34 @@ public class UserTestcase {
 		blog.setLikes(2);
 
 		blogDAO.save(blog);
-*/
+
 		/* BlogComment */
-		/*blogComment.setBlog_name("AngularJS");
+		blogComment.setBlog_name("AngularJS");
 		blogComment.setMessage("message");
 		blogComment.setUser_id(1);
 		blogComment.setUser_name("Kishore");
 		blogComment.setBlogId(2);
 
-		blogCommentDAO.save(blogComment);*/
+		blogCommentDAO.save(blogComment);
 		
 		/* Forum DATA */
-		/*forum.setDescription("bye");
+		forum.setDescription("bye");
 		forum.setTitle("hi");
 
-		forumDAO.save(forum);*/
+		forumDAO.save(forum);
 		
 		/* ForumComment */
-		/*forumComment.setEmail_id("Krishna@gmail.com");
+		forumComment.setEmail_id("Krishna@gmail.com");
 		forumComment.setForumid(10);
 		forumComment.setUser_name("Krishna");
 		
-		forumCommentDAO.save(forumComment);*/
+		forumCommentDAO.save(forumComment);
 		
 		/*Job*/
-/*		job.setJobProfile("BE");
+		job.setJobProfile("BE");
 		job.setJobDescription("developer");
 		
-		jobDAO.save(job);*/
+		jobDAO.save(job);
 		
 		/*Friend*/
 		friend.setFriendName("Rap");

@@ -23,7 +23,7 @@ public class Blog {
 	private String email_Id;
 	private String user_name;
 	private Date createdate;
-	private String Status;
+	private String status;
 	private int likes;
 
 	public int getBlogId() {
@@ -75,11 +75,11 @@ public class Blog {
 	}
 
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
 
 	public int getLikes() {

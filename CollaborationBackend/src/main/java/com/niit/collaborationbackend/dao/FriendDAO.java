@@ -20,6 +20,6 @@ public interface FriendDAO {
 
 	public List<Friend> getByFriendAccepted(String name);
 
-	public void delete(int id);
+	public void delete(int friendId);
 
 }

@@ -33,9 +33,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@SuppressWarnings("unchecked")
 	@Transactional
-	public List<User> list() {
-		// TODO Auto-generated method stub
-		
+	public List<User> list() {		
 		List<User> listUser = (List<User>)
 		sessionFactory.getCurrentSession().createCriteria(User.class)
 		.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
@@ -46,15 +44,15 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Transactional	
 	public User create(User users) {
-		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(users);
 		return users;
 	}
 	@Transactional	
-	public void delete(int id) {
+	public User delete(int userId) {
 		User usertoDelete=new User();
-		usertoDelete.setUserId(id);
+		usertoDelete.setUserId(userId);
 		sessionFactory.getCurrentSession().delete(usertoDelete);
+		return usertoDelete;
 		}
 	@Transactional	
 	public User update(User users) {
@@ -63,7 +61,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 	@Transactional	
 	public User get(int id) {
-		String hql = "from User where user_id =" + "'"+ id +"'";
+		String hql = "from User where userId =" + "'"+ id +"'";
 		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) query.list();
@@ -75,17 +73,15 @@ public class UserDAOImpl implements UserDAO {
 }
 
 	@Transactional
-	public User getbyUsername(String username) {
+	public List<User> getbyUsername(String username) {
 		// TODO Auto-generated method stub
-		String hql = "from User where userName =" + "'"+ username +"'";
+		String hql = "from User where first_name =" + "'"+ username +"'";
 		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<User> listUser = (List<User>) query.list();
 		
-		if (listUser != null && !listUser.isEmpty()){
-			return listUser.get(0);
-		}
-		return null;
+		
+		return listUser;
 	}
 }
 

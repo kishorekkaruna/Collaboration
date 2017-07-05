@@ -10,9 +10,9 @@ public interface ForumCommentDAO {
 
 	public void save(ForumComment forumComment);
 
-	public void saveOrUpdate();
+	public void saveOrUpdate(ForumComment forumComment);
 
-	public void delete();
+	public void delete(ForumComment forumComment);
 
 	public List<ForumComment> getForumComments(int forumId);
 

@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.collaborationbackend.dao.JobDAO;
+import com.niit.collaborationbackend.model.Blog;
 import com.niit.collaborationbackend.model.Job;
 
 @Repository("JobDAO")
@@ -23,9 +25,12 @@ public class JobDAOImpl implements JobDAO {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Job> list() {
+		List<Job> jobList = (List<Job>) sessionFactory.getCurrentSession().createCriteria(Job.class)
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 
-		return null;
+		return jobList;
 	}
 
 	public void save(Job job) {
@@ -39,11 +44,16 @@ public class JobDAOImpl implements JobDAO {
 	}
 
 	public Job getByJobId(int jobid) {
+		Job listById = (Job) sessionFactory.getCurrentSession().get(Job.class, jobid);
 
-		return null;
+		return listById;
 	}
 
-	public void delete(int jobid) {
+	public Job delete(int jobid) {
+		Job jobtoDelete = new Job();
+		jobtoDelete.setJobid(jobid);
+		sessionFactory.getCurrentSession().delete(jobtoDelete);
+		return jobtoDelete;
 
 	}
 
