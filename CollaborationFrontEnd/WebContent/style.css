@@ -13,9 +13,7 @@ html, body {
 	height: 100%;
 	width: 100%;
 	margin: auto;
-	background:
-		url(https://static.pexels.com/photos/89869/pexels-photo-89869.jpeg)
-		no-repeat 50%;
+	background:url(https://static.pexels.com/photos/89869/pexels-photo-89869.jpeg), no-repeat 50%;
 	display: table;
 	top: 0;
 	background-size: cover;
@@ -33,6 +31,13 @@ html, body {
 	margin: 0 auto;
 	text-align: center;
 	padding-bottom: 28%;
+}
+
+.con{
+	text-align: center;
+	font-family: 'Yantramanav', sans-serif;
+	font-size: 300%;
+	font-weight: 70;
 }
 
 .content h1 {
@@ -61,9 +66,12 @@ html, body {
 }
 
 p {
-	font-size: 150%;
+	font-size: 125%;
 	line-height: 120%;
+	color: #4b514f;
 	font-family: sans-serif;
+	padding: 2px 40px 10px 60px;
+	
 }
 
 /*--- Media Queries --*/
@@ -180,7 +188,7 @@ h1 {
 
 .nav-close {
 	display: none;
-} 
+}
 
 .nav-check:checked ~ .nav-label .nav-open {
 	display: none;
