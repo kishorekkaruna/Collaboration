@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.niit.collaborationbackend.dao.BlogCommentDAO;
 import com.niit.collaborationbackend.model.BlogComment;
+import com.niit.collaborationbackend.model.Forum;
 
 @Repository("BlogCommentDAO")
 @Transactional
@@ -25,12 +26,11 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 	}
 
 	public List<BlogComment> getById(int blogId) {
-		String hql = "from BlogComment where blogId =" + "'"+ blogId +"'";
+		String hql = "from BlogComment where blogId =" + "'" + blogId + "'";
 		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<BlogComment> listBlogComment = (List<BlogComment>) query.list();
-		
-		
+
 		return listBlogComment;
 	}
 
@@ -56,8 +56,15 @@ public class BlogCommentDAOImpl implements BlogCommentDAO {
 		return listBlogComment;
 	}
 
+	@SuppressWarnings("unchecked")
 	public BlogComment getByBId(int id) {
-		
+		String hql = "from BlogComment where id=" + "'" + id + "'";
+		org.hibernate.Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		List<BlogComment> listBlogComment = (List<BlogComment>) query.list();
+
+		if (listBlogComment != null && !listBlogComment.isEmpty()) {
+			return listBlogComment.get(0);
+		}
 		return null;
 	}
 
