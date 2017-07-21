@@ -2,6 +2,8 @@ package com.niit.collaborationbackend.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.niit.collaborationbackend.dao.BlogDAO;
 import com.niit.collaborationbackend.model.Blog;
+import com.niit.collaborationbackend.model.User;
 
 @RestController
 public class BlogController {
@@ -49,7 +52,15 @@ public class BlogController {
 	}
 
 	@PostMapping("/blog")
-	public ResponseEntity<Blog> save(@RequestBody Blog blog) {
+	public ResponseEntity<Blog> save(@RequestBody Blog blog,HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		System.out.println(user.getDob());
+		blog.setUser_name(user.getUser_name());
+		blog.setEmail_Id(user.getEmail_id());
+		blog.setUser_id(user.getUserId());
+		blog.setStatus("A");
+		
+		
 		blogDAO.save(blog);
 		return new ResponseEntity<Blog>(blog, HttpStatus.OK);
 	}
